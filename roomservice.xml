@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<manifest>
+	
+	<remote name="gh" fetch="https://github.com" />		
+	
+	
+	<!-- Trees -->
+	<project path="device/asus/Z01K" name="foxartic/device_asus_Z01K" remote="gh" revision="main" />
+	<project path="vendor/asus/Z01K" name="foxartic/vendor_asus_Z01K" remote="gh" revision="main" />
+	
+
+</manifest>
