@@ -6,9 +6,9 @@ set -e
 # Variables for ROM manifest, branch, device name, ROM name, and build type
 ROM_MANIFEST_URL=${1:-"https://github.com/LineageOS/android.git"}
 ROM_BRANCH=${2:-"lineage-18.0"}
-DEVICE_NAME=${3:-"default_device"}  # Placeholder for device name
-ROM_NAME=${4:-"CustomROM"}           # Placeholder for ROM name
-BUILD_TYPE=${5:-"user"}               # Default build type (user, userdebug, eng)
+DEVICE_NAME=${3:-"Z01K"}  # Placeholder for device name
+ROM_NAME=${4:-"lineage"}           # Placeholder for ROM name
+BUILD_TYPE=${5:-"userdebug"}               # Default build type (user, userdebug, eng)
 SCRIPTS_REPO_URL="https://github.com/foxartic/scripts.git"
 SCRIPTS_BRANCH="main"
 
