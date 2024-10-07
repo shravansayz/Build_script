@@ -26,6 +26,11 @@ This script automates the process of building a custom ROM from a specified Andr
    ```bash
    git clone <your-repo-url>
    cd <your-repo-directory>
-2. chmod +x build_rom.sh
+   
+2.
+  ```bash
+     chmod +x build_rom.sh
 
-3../build.sh
+3.
+   ```bash
+   ../build.sh
