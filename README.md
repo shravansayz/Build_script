@@ -33,4 +33,4 @@ This script automates the process of building a custom ROM from a specified Andr
 
 3.
    ```bash
-   ../build.sh
+     ./build.sh
