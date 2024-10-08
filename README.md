@@ -28,7 +28,7 @@ This script automates the process of building a custom ROM from a specified Andr
    cd <your-repo-directory>
    
 2.
-  ```bash
+   ```bash
      chmod +x build_rom.sh
 
 3.
