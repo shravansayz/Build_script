@@ -1,4 +1,4 @@
-# Custom ROM Build Script
+# Crave Custom ROM Build Script
 
 This script automates the process of building a custom ROM from a specified Android source code repository. It allows you to specify the ROM manifest URL, branch, device name, ROM name, and build type. The built ROM can then be pulled for further use.
 
