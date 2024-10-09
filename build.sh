@@ -41,7 +41,7 @@ echo "Running resync script..."
 # Set up the build environment and lunch for the target device
 echo "Setting up build environment..."
 source build/envsetup.sh
-lunch "${DEVICE_NAME}_${BUILD_TYPE}"
+lunch "${DEVICE_NAME}-${BUILD_TYPE}"
 
 # Build the ROM
 echo "Building ROM..."
