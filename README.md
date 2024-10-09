@@ -21,16 +21,7 @@ This script automates the process of building a custom ROM from a specified Andr
 
 ## Usage
 
-1. Clone this repository to your local machine:
+1. Use in crave :
 
    ```bash
-   git clone <your-repo-url>
-   cd <your-repo-directory>
-   
-2.
-   ```bash
-     chmod +x build_rom.sh
-
-3.
-   ```bash
-     ./build.sh
+    crave run --no-patch -- "rm -rf scripts && git clone https://github.com/foxartic/scripts.git && bash scripts/build.sh"
