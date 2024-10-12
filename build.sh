@@ -5,7 +5,7 @@ set -e
 
 # Default values for ROM manifest, branch, device name, ROM name, build type, and remove prebuilts flag
 ROM_MANIFEST_URL=${1:-"https://github.com/LineageOS/android.git"}
-ROM_BRANCH=${2:-"lineage-18.1"}
+ROM_BRANCH=${2:-"lineage-18.0"}
 DEVICE_NAME=${3:-"Z01K"}
 ROM_NAME=${4:-"lineage"}
 BUILD_TYPE=${5:-"userdebug"}
