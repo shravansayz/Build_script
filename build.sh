@@ -1,9 +1,17 @@
 #!/bin/bash
 
-# Exit script on error
+# Exit the script immediately if any command fails
 set -e
 
-# Default values for ROM manifest, branch, device name, ROM name, build type, and remove prebuilts flag
+# Define color variables for better readability
+RED='\033[0;31m'
+GREEN='\033[0;32m'
+YELLOW='\033[1;33m'
+BLUE='\033[0;34m'
+CYAN='\033[0;36m'
+NC='\033[0m' # No Color
+
+# Default values for ROM manifest URL, branch, device name, ROM name, build type, and whether to remove prebuilts
 ROM_MANIFEST_URL=${1:-"https://github.com/LineageOS/android.git"}
 ROM_BRANCH=${2:-"lineage-18.0"}
 DEVICE_NAME=${3:-"Z01K"}
@@ -11,51 +19,54 @@ ROM_NAME=${4:-"lineage"}
 BUILD_TYPE=${5:-"userdebug"}
 REMOVE_PREBUILTS=${6:-"yes"}  # Accept 'yes' or 'no' to remove prebuilts
 
-# Start ROM build process
-echo "Starting ROM build for device: $DEVICE_NAME with ROM: $ROM_NAME on branch: $ROM_BRANCH"
+# Starting message with the details of the build
+echo -e "${CYAN}Starting ROM build for device: ${DEVICE_NAME}${NC}"
+echo -e "${CYAN}ROM: ${ROM_NAME}, Branch: ${ROM_BRANCH}, Build type: ${BUILD_TYPE}${NC}"
 
-# Remove prebuilts if the flag is set to 'yes'
+# Remove prebuilts directory if specified
 if [[ "$REMOVE_PREBUILTS" == "yes" ]]; then
-    echo "Removing prebuilts directory..."
+    echo -e "${YELLOW}Removing prebuilts directory...${NC}"
     rm -rf prebuilts
 else
-    echo "Skipping removal of prebuilts directory."
+    echo -e "${YELLOW}Skipping prebuilts removal.${NC}"
 fi
 
-# Initialize repo with ROM manifest and branch
-echo "Initializing repo..."
+# Initialize the repo with the provided ROM manifest and branch
+echo -e "${BLUE}Initializing repo with manifest: ${ROM_MANIFEST_URL} (branch: ${ROM_BRANCH})...${NC}"
 repo init -u "$ROM_MANIFEST_URL" -b "$ROM_BRANCH" --git-lfs
 
-# Remove and recreate local manifests directory
-echo "Setting up local manifests..."
+# Set up local manifests by clearing and recreating the directory
+echo -e "${BLUE}Setting up local manifests...${NC}"
 rm -rf .repo/local_manifests
 mkdir -p .repo/local_manifests
 
-# Copy roomservice.xml to local manifests
+# Copy roomservice.xml to the local manifests directory
 cp scripts/roomservice.xml .repo/local_manifests/
 
-# Run resync script to sync repositories
-echo "Running resync script..."
+# Sync repositories using the resync script
+echo -e "${BLUE}Syncing repositories...${NC}"
 /opt/crave/resync.sh
 
-# Set up the build environment and lunch for the target device
-echo "Setting up build environment..."
+# Set up the build environment and lunch for the specific device
+echo -e "${BLUE}Configuring build environment...${NC}"
 source build/envsetup.sh
 lunch "${ROM_NAME}_${DEVICE_NAME}-${BUILD_TYPE}"
 
-# Build the ROM
-echo "Building ROM..."
+# Build the ROM using all available CPU cores
+echo -e "${YELLOW}Building the ROM...${NC}"
 make -j$(nproc) bacon
 
-# Pull the built ROM zip file using crave
+# Define the path to the built ROM zip file
 BUILT_ROM_PATH="out/target/product/${DEVICE_NAME}/${ROM_NAME}*.zip"
-echo "Pulling built ROM from $BUILT_ROM_PATH..."
+
+# Attempt to pull the built ROM using crave
+echo -e "${CYAN}Attempting to pull the built ROM from $BUILT_ROM_PATH...${NC}"
 crave pull "$BUILT_ROM_PATH"
 
-# Check if pulling ROM was successful
+# Check if the pull command succeeded
 if [ $? -eq 0 ]; then
-    echo "ROM pulled successfully!"
+    echo -e "${GREEN}ROM pulled successfully!${NC}"
 else
-    echo "Failed to pull ROM zip file."
+    echo -e "${RED}Failed to pull the ROM zip file.${NC}"
     exit 1
 fi
