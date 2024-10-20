@@ -54,9 +54,14 @@ mkdir -p .repo/local_manifests
 cp scripts/roomservice.xml .repo/local_manifests/
 success_msg "Local manifests set up successfully!"
 
-# Sync repositories using the resync script
-echo -e "${BLUE}Syncing repositories...${NC}"
-/opt/crave/resync.sh
+# Sync repositories with crave or traditional repo sync
+if [ -f /opt/crave/resync.sh ]; then
+    echo -e "${BLUE}Syncing repositories using crave resync...${NC}"
+    /opt/crave/resync.sh
+else
+    echo -e "${YELLOW}/opt/crave/resync.sh not found. Falling back to traditional repo sync...${NC}"
+    repo sync -c --no-clone-bundle --optimized-fetch --prune --force-sync -j$(nproc --all)
+fi
 success_msg "Sync completed successfully!"
 
 # Set up the build environment and lunch for the specific device
