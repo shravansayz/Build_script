@@ -20,7 +20,7 @@ success_msg() {
 
 # Default values for ROM manifest URL, branch, device name, ROM name, build type, and whether to remove prebuilts
 ROM_MANIFEST_URL=${1:-"https://github.com/LineageOS/android.git"}
-ROM_BRANCH=${2:-"lineage-18.0"}
+ROM_BRANCH=${2:-"lineage-18.1"}
 DEVICE_NAME=${3:-"Z01K"}
 ROM_NAME=${4:-"lineage"}
 BUILD_TYPE=${5:-"userdebug"}
