@@ -24,7 +24,7 @@ ROM_BRANCH=${2:-"lineage-18.1"}
 DEVICE_NAME=${3:-"Z01K"}
 ROM_NAME=${4:-"lineage"}
 BUILD_TYPE=${5:-"userdebug"}
-REMOVE_PREBUILTS=${6:-"yes"}  # Accept 'yes' or 'no' to remove prebuilts
+REMOVE_PREBUILTS=${6:-"no"}  # Accept 'yes' or 'no' to remove prebuilts
 
 # Starting message with the details of the build
 echo -e "${CYAN}Starting ROM build for device: ${DEVICE_NAME}${NC}"
