@@ -7,6 +7,5 @@
 	<!-- Trees -->
 	<project path="device/asus/Z01K" name="foxartic/device_asus_Z01K" remote="gh" revision="main" />
 	<project path="vendor/asus/Z01K" name="foxartic/vendor_asus_Z01K" remote="gh" revision="main" />
-	<project path="kernel/asus/Z01K" name="BlivionIaG/android_kernel_asus_ze554kl" remote="gh" revision="master" />
 
 </manifest>
