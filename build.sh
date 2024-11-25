@@ -21,7 +21,7 @@ success_msg() {
 # Default values for ROM manifest URL, branch, device name, ROM name, build type, and whether to remove prebuilts
 ROM_MANIFEST_URL=${1:-"https://github.com/LineageOS/android.git"}
 ROM_BRANCH=${2:-"lineage-18.1"}
-DEVICE_NAME=${3:-"Z01K"}
+DEVICE_NAME=${3:-"ASUS_Z01KD_1"}
 ROM_NAME=${4:-"lineage"}
 BUILD_TYPE=${5:-"userdebug"}
 REMOVE_PREBUILTS=${6:-"no"}  # Accept 'yes' or 'no' to remove prebuilts
