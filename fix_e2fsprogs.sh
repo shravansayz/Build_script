@@ -1,55 +1,58 @@
 #!/bin/bash
 
-# Script by t.me/@zetaxbyte
-# Fix e2fsprogs and mke2fs issues
+# script by t.me/@zetaxbyte
 
-# Colors for output
-YELLOW='\033[93m'
-GREEN='\033[92m'
-NC='\033[0m' # No color
+# Mendefinisikan kode warna ANSI
+normal="\033[0m"
+merah="\033[38;5;196m"
+orange="\033[38;5;202m"
+kuning="\033[38;5;226m"
+hijau="\033[38;5;46m"
+cyan="\033[38;5;51m"
+biru="\033[38;5;33m"
+ungu="\033[38;5;93m"
+putih="\033[38;5;15m"
 
-echo -e "\n${YELLOW}Fixing mke2fs: Invalid filesystem option errors...${NC}\n"
+# Menampilkan efek warna pelangi dengan transisi yang lebih halus
+echo -e "\n$merah██ $orange██ $kuning██ $hijau██ $cyan██ $biru██ $ungu██ $putih██ $normal"
+echo -e "$merah██ $orange██ $kuning██ $hijau██ $cyan██ $biru██ $ungu██ $putih██ $normal\n"
+
+# fix e2fsprogs & mke2fs 
+echo -e "\n\033[96mfix mke2fs Invalid filesystem option set: has_journal,extent,huge_file,flex_bg,metadata_csum,metadata_csum_seed,64bit,dir_nlink,extra_isize,orphan_file\033[0m\n"
+sleep 0.5
+echo -e "\n\033[93mget purge e2fsprogs and remove mke2fs\033[0m\n"
+
+sudo apt-get purge e2fsprogs
+sleep 0.5
+sudo rm /usr/sbin/mke2fs
 sleep 0.5
 
-echo -e "\n${GREEN}Removing e2fsprogs and mke2fs...${NC}\n"
-sudo apt-get purge -y e2fsprogs
-sleep 0.5
-sudo rm -f /usr/sbin/mke2fs
-sleep 0.5
-
-# Clear shell hash table
+#remove cacche hash table shell
 hash -r
 
-echo -e "\n${GREEN}Installing dependencies for e2fsprogs build...${NC}\n"
+#dependecny for e2fsprogs
+echo -e "\n\033[92msetup dependecy build for e2fsprogs\033[0m\n"
+
 sudo apt update
-sudo apt install -y build-essential libblkid-dev uuid-dev libuuid1
+sudo apt install build-essential libblkid-dev uuid-dev libuuid1 -y
 
-# Define e2fsprogs version
-E2FSPROGS_VERSION="1.46.5"
-E2FSPROGS_TARBALL="e2fsprogs_${E2FSPROGS_VERSION}.orig.tar.gz"
-E2FSPROGS_URL="http://mirrors.kernel.org/ubuntu/pool/main/e/e2fsprogs/${E2FSPROGS_TARBALL}"
-
-echo -e "\n${GREEN}Downloading e2fsprogs version ${E2FSPROGS_VERSION}...${NC}\n"
-wget "${E2FSPROGS_URL}"
+#wget e2fsprogs latests
+wget http://mirrors.kernel.org/ubuntu/pool/main/e/e2fsprogs/e2fsprogs_1.46.5.orig.tar.gz
 sleep 0.5
-
-echo -e "\n${GREEN}Extracting and building e2fsprogs...${NC}\n"
-tar -xvzf "${E2FSPROGS_TARBALL}"
-cd "e2fsprogs-${E2FSPROGS_VERSION}"
+tar -xvzf e2fsprogs_1.46.5.orig.tar.gz
+cd e2fsprogs-1.46.5
 ./configure
 sudo make
 sudo make install
 sleep 1
 cd ..
+sudo rm e2fsprogs_1.46.5.orig.tar.gz
+sudo rm -rf e2fsprogs-1.46.5/
 
-# Cleanup
-echo -e "\n${GREEN}Cleaning up...${NC}\n"
-sudo rm -f "${E2FSPROGS_TARBALL}"
-sudo rm -rf "e2fsprogs-${E2FSPROGS_VERSION}"
+echo -e "\n\033[92msetup e2fsprogs & mke2fs complete\033[0m\n"
 
-echo -e "\n${GREEN}e2fsprogs and mke2fs setup complete.${NC}\n"
+echo -e "\n\033[96m==========crave is wonderfully amazing==========\033[0m\n"
 
-# Optional: Install lolcat for fancy output
-sudo apt install -y lolcat
-
-echo -e "\n========== crave is wonderfully amazing ==========\n" | lolcat
+# Menampilkan efek warna pelangi dengan transisi yang lebih halus
+echo -e "\n$merah██ $orange██ $kuning██ $hijau██ $cyan██ $biru██ $ungu██ $putih██ $normal"
+echo -e "$merah██ $orange██ $kuning██ $hijau██ $cyan██ $biru██ $ungu██ $putih██ $normal\n"
