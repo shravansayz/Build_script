@@ -65,6 +65,14 @@ else
 fi
 success_msg "Sync completed successfully!"
 
+# Auto-sign build
+echo -e "${YELLOW}Building Private Keys...${NC}"
+rm -rf vendor/lineage-priv/keys
+wget https://raw.githubusercontent.com/Trijal08/crDroid-build-signed-script-auto/main/create-signed-env.sh
+chmod a+x create-signed-env.sh
+./create-signed-env.sh
+success_msg "Keys generated successfully!"
+
 # Set up the build environment and lunch for the specific device
 echo -e "${BLUE}Configuring build environment...${NC}"
 source build/envsetup.sh
