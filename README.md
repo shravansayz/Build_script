@@ -24,4 +24,4 @@ This script automates the process of building a custom ROM from a specified Andr
 1. Use in crave :
 
    ```bash
-    crave run --no-patch -- "rm -rf scripts && git clone https://github.com/Shravan55555/build_script.git && bash scripts/build.sh"
+    crave run --no-patch -- "rm -rf scripts && git clone https://github.com/Shravan55555/build_script.git && bash build_script/build.sh"
