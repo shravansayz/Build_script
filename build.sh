@@ -19,12 +19,13 @@ success_msg() {
 }
 
 # Default values for ROM manifest URL, branch, device name, ROM name, build type, and whether to remove prebuilts
-ROM_MANIFEST_URL=${1:-"https://github.com/LineageOS/android.git"}
-ROM_BRANCH=${2:-"lineage-18.1"}
-DEVICE_NAME=${3:-"ASUS_Z01KD_1"}
-ROM_NAME=${4:-"lineage"}
-BUILD_TYPE=${5:-"userdebug"}
-REMOVE_PREBUILTS=${6:-"no"}  # Accept 'yes' or 'no' to remove prebuilts
+ROM_MANIFEST_URL=${1:-"https://github.com/ProjectPixelage/android_manifest.git"}
+ROM_BRANCH=${2:-"15"}
+DEVICE_NAME=${3:-"RMX1901"}
+ROM_NAME=${4:-"pixelage"}
+CONFIG_TYPE=${5:-"ap4a"}
+BUILD_TYPE=${6:-"user"}
+REMOVE_PREBUILTS=${7:-"no"}  # Accept 'yes' or 'no' to remove prebuilts
 
 # Starting message with the details of the build
 echo -e "${CYAN}Starting ROM build for device: ${DEVICE_NAME}${NC}"
@@ -67,12 +68,13 @@ success_msg "Sync completed successfully!"
 # Set up the build environment and lunch for the specific device
 echo -e "${BLUE}Configuring build environment...${NC}"
 source build/envsetup.sh
-lunch "${ROM_NAME}_${DEVICE_NAME}-${BUILD_TYPE}"
+lunch "${ROM_NAME}_${DEVICE_NAME}-${CONFIG_TYPE}-${BUILD_TYPE}"
 success_msg "Build environment configured successfully!"
 
 # Build the ROM using all available CPU cores
 echo -e "${YELLOW}Building the ROM...${NC}"
-make -j$(nproc) bacon
+mka installclean
+mka bacon
 success_msg "ROM built successfully!"
 
 # Define the path to the built ROM zip file
