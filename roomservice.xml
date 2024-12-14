@@ -1,11 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <manifest>
+        <remote  name="ghub"
+                fetch="https://github.com" />
+        <remote  name="glab"
+                fetch="https://gitlab.com" />
+ 
+ <!-- Device Trees --> 
+ <project path="device/realme/RMX1901" name="shravansayz/device_realme_RMX1901" remote="ghub" revision="pixelage" />
 	
-	<remote name="gh" fetch="https://github.com" />		
+ <!-- Vendor Trees -->
+ <project path="vendor/realme/RMX1901" name="shravansayz/vendor_realme_RMX1901_15" remote="glab" revision="15" clone-depth="1" />
 	
-	
-	<!-- Trees -->
-	<project path="device/asus/ASUS_Z01KD_1" name="foxartic/device_asus_Z01K" remote="gh" revision="main" />
-	<project path="vendor/asus/ASUS_Z01KD_1" name="foxartic/vendor_asus_Z01K" remote="gh" revision="main" />
+ <!-- Kernel Trees-->
+ <project path="kernel/realme/sdm710" name="shravansayz/kernel_realme_sdm710" remote="ghub" revision="15" clone-depth="1" />
 
+ <!-- Proton clang -->
+ <project path="prebuilts/clang/host/linux-x86/clang-proton" name="kdrag0n/proton-clang" remote="ghub" revision="master" clone-depth="1" />
+ 
 </manifest>
