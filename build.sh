@@ -19,12 +19,13 @@ success_msg() {
 }
 
 # Default values for ROM manifest URL, branch, device name, ROM name, build type, and whether to remove prebuilts
-ROM_MANIFEST_URL=${1:-"https://github.com/DerpFest-AOSP/manifest.git"}
-ROM_BRANCH=${2:-"15"}
+ROM_MANIFEST_URL=${1:-"https://github.com/PixelOS-Fifteen/manifest.git"}
+ROM_BRANCH=${2:-"fifteen"}
 DEVICE_NAME=${3:-"RMX1901"}
-ROM_NAME=${4:-"derp"}
-BUILD_TYPE=${5:-"user"}
-REMOVE_PREBUILTS=${6:-"no"}  # Accept 'yes' or 'no' to remove prebuilts
+ROM_NAME=${4:-"aosp"}
+CONFIG_TYPE=${5:-"ap3a"}
+BUILD_TYPE=${6:-"user"}
+REMOVE_PREBUILTS=${7:-"no"}  # Accept 'yes' or 'no' to remove prebuilts
 
 # Starting message with the details of the build
 echo -e "${CYAN}Starting ROM build for device: ${DEVICE_NAME}${NC}"
@@ -75,7 +76,7 @@ success_msg "Keys generated successfully!"
 # Set up the build environment and lunch for the specific device
 echo -e "${BLUE}Configuring build environment...${NC}"
 source build/envsetup.sh
-lunch "${ROM_NAME}_${DEVICE_NAME}-${BUILD_TYPE}"
+lunch "${ROM_NAME}_${DEVICE_NAME}-${CONFIG_TYPE}-${BUILD_TYPE}"
 success_msg "Build environment configured successfully!"
 
 # Build the ROM using all available CPU cores
