@@ -19,10 +19,10 @@ success_msg() {
 }
 
 # Default values for ROM manifest URL, branch, device name, ROM name, build type, and whether to remove prebuilts
-ROM_MANIFEST_URL=${1:-"https://github.com/PixelOS-Fifteen/manifest.git"}
-ROM_BRANCH=${2:-"fifteen"}
+ROM_MANIFEST_URL=${1:-"https://github.com/crdroidandroid/android.git"}
+ROM_BRANCH=${2:-"15"}
 DEVICE_NAME=${3:-"RMX1901"}
-ROM_NAME=${4:-"aosp"}
+ROM_NAME=${4:-"lineage"}
 CONFIG_TYPE=${5:-"ap3a"}
 BUILD_TYPE=${6:-"user"}
 REMOVE_PREBUILTS=${7:-"no"}  # Accept 'yes' or 'no' to remove prebuilts
@@ -66,12 +66,14 @@ fi
 success_msg "Sync completed successfully!"
 
 # Auto-sign build
-echo -e "${YELLOW}Building Private Keys...${NC}"
-rm -rf vendor/lineage-priv/keys
-wget https://raw.githubusercontent.com/Trijal08/crDroid-build-signed-script-auto/main/create-signed-env.sh
-chmod a+x create-signed-env.sh
-./create-signed-env.sh
+echo -e "${YELLOW}Cloning Private Keys...${NC}"
+rm -rf vendor/lineage-priv
+git clone https://github.com/shravansayz/private_keys.git -b rise vendor/lineage-priv
 success_msg "Keys generated successfully!"
+
+echo -e "${YELLOW}Cloning Custom...${NC}"
+wget https://raw.githubusercontent.com/custom-crdroid/custom_cr_setup/refs/heads/15.0/vendorsetup.sh
+bash vendorsetup.sh
 
 # Set up the build environment and lunch for the specific device
 echo -e "${BLUE}Configuring build environment...${NC}"
