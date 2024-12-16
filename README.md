@@ -19,6 +19,9 @@ This script automates the process of building a custom ROM from a specified Andr
 - Git, repo, and `crave` installed on your system.
 - Sufficient disk space for the Android source code and built ROM.
 
+## Credits
+- Thanks to @foxartic for the script
+
 ## Usage
 
 1. Use in crave :
