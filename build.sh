@@ -52,7 +52,7 @@ rm -rf .repo/local_manifests
 mkdir -p .repo/local_manifests
 
 # Copy roomservice.xml to the local manifests directory
-cp evox/roomservice.xml .repo/local_manifests/
+cp roomservice.xml .repo/local_manifests/
 success_msg "Local manifests set up successfully!"
 
 # Sync repositories with crave or traditional repo sync
