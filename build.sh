@@ -20,7 +20,7 @@ success_msg() {
 
 # Default values for ROM manifest URL, branch, device name, ROM name, build type, and whether to remove prebuilts
 ROM_MANIFEST_URL=${1:-"https://github.com/crdroidandroid/android.git"}
-ROM_BRANCH=${2:-"15"}
+ROM_BRANCH=${2:-"15.0"}
 DEVICE_NAME=${3:-"RMX1901"}
 ROM_NAME=${4:-"lineage"}
 CONFIG_TYPE=${5:-"ap3a"}
