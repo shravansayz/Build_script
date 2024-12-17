@@ -49,10 +49,7 @@ success_msg "Repo initialized successfully!"
 # Set up local manifests by clearing and recreating the directory
 echo -e "${BLUE}Setting up local manifests...${NC}"
 rm -rf .repo/local_manifests
-mkdir -p .repo/local_manifests
-
-# Copy roomservice.xml to the local manifests directory
-cp build_script/roomservice.xml .repo/local_manifests/
+git clone https://github.com/sksayz5/local_manifest --depth 1 -b main .repo/local_manifests
 success_msg "Local manifests set up successfully!"
 
 # Sync repositories with crave or traditional repo sync
@@ -76,7 +73,7 @@ wget https://raw.githubusercontent.com/custom-crdroid/custom_cr_setup/refs/heads
 bash vendorsetup.sh
 
 # Set up the build environment and lunch for the specific device
-echo -e "${BLUE}Configuring build environment...${NC}"
+echo -e "${YELLOW}Configuring build environment...${NC}"
 source build/envsetup.sh
 lunch "${ROM_NAME}_${DEVICE_NAME}-${CONFIG_TYPE}-${BUILD_TYPE}"
 success_msg "Build environment configured successfully!"
