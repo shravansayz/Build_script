@@ -49,7 +49,7 @@ success_msg "Repo initialized successfully!"
 # Set up local manifests by clearing and recreating the directory
 echo -e "${BLUE}Setting up local manifests...${NC}"
 rm -rf .repo/local_manifests
-git clone https://github.com/sksayz5/local_manifest --depth 1 -b main .repo/local_manifests
+git clone https://github.com/shravansayz/local_manifests --depth 1 -b crdroid .repo/local_manifests
 success_msg "Local manifests set up successfully!"
 
 # Sync repositories with crave or traditional repo sync
@@ -61,12 +61,6 @@ else
     repo sync -c --no-clone-bundle --optimized-fetch --prune --force-sync -j$(nproc --all)
 fi
 success_msg "Sync completed successfully!"
-
-# Auto-sign build
-echo -e "${YELLOW}Cloning Private Keys...${NC}"
-rm -rf vendor/lineage-priv
-git clone https://github.com/shravansayz/private_keys.git -b rise vendor/lineage-priv
-success_msg "Keys generated successfully!"
 
 echo -e "${YELLOW}Cloning Custom...${NC}"
 wget https://raw.githubusercontent.com/custom-crdroid/custom_cr_setup/refs/heads/15.0/vendorsetup.sh
