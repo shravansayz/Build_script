@@ -62,7 +62,7 @@ else
 fi
 success_msg "Sync completed successfully!"
 
-Auto-sign build
+# Signing keys
 echo -e "${YELLOW}Cloning Private Keys...${NC}"
 rm -rf vendor/lineage-priv
 git clone https://github.com/shravansayz/private_keys.git -b rise vendor/lineage-priv
