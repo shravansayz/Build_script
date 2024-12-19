@@ -68,10 +68,6 @@ rm -rf vendor/lineage-priv
 git clone https://github.com/shravansayz/private_keys.git -b rise vendor/lineage-priv
 success_msg "Keys generated successfully!"
 
-echo -e "${YELLOW}Cloning Custom...${NC}"
-wget https://raw.githubusercontent.com/custom-crdroid/custom_cr_setup/refs/heads/15.0/vendorsetup.sh
-bash vendorsetup.sh
-
 # Set up the build environment and lunch for the specific device
 echo -e "${YELLOW}Configuring build environment...${NC}"
 source build/envsetup.sh
